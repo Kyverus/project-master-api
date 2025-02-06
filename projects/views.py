@@ -1,13 +1,13 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.response import Response
-from rest_framework import serializers
-from rest_framework import status
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAuthenticated
-from .serializers import ProjectSerializer
 
+from rest_framework import serializers, status
+from rest_framework.response import Response
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+
+from .serializers import ProjectSerializer
 from .models import Project
 
 # Create your views here.
@@ -15,7 +15,7 @@ from .models import Project
 @api_view(['GET', 'POST'])
 @authentication_classes([JWTAuthentication, SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def projectsList(request):
+def projectList(request):
     if request.method == "GET":
         projects = Project.objects.all()
         serializer = ProjectSerializer(projects, many=True)
