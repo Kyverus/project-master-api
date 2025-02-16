@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Organization, OrganizationMembership
+from .models import Organization
 
 class OrganizationSerializer(ModelSerializer):
     class Meta:
