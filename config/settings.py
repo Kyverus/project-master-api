@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'api',
     'projects',
     'organizations',
+    'memberships',
+    'applications',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     "corsheaders",
