@@ -4,7 +4,7 @@ from organizations.models import Organization
 
 # Create your models here.
 
-class OrganizationMembership(models.Model):
+class Membership(models.Model):
     user =  models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, default=None)
     owner = models.BooleanField(default=False)

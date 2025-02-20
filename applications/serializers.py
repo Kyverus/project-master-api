@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
-from .models import OrganizationApplication
+from .models import Application
 
-class OrganizationApplicationSerializer(ModelSerializer):
+class ApplicationSerializer(ModelSerializer):
     class Meta:
-        model = OrganizationApplication
+        model = Application
         fields = '__all__'
