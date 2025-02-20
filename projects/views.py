@@ -9,6 +9,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 
 from .serializers import ProjectSerializer
 from .models import Project
+from memberships.models import Membership
 
 # Create your views here.
 
@@ -33,7 +34,7 @@ def projectList(request):
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-@api_view(['GET','PUT','DELETE'])
+@api_view(['GET','PATCH','DELETE'])
 @authentication_classes([JWTAuthentication, SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def projectObject(request, pk):
@@ -41,10 +42,19 @@ def projectObject(request, pk):
         project = Project.objects.get(id=pk)
         serializer = ProjectSerializer(project, many=False)
         return Response(serializer.data)
-
+    
     if request.method == "PUT":
         project = Project.objects.get(id=pk)
         serializer = ProjectSerializer(data=request.data, instance=project)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+    if request.method == "PATCH":
+        project = Project.objects.get(id=pk)
+        serializer = ProjectSerializer(data=request.data, instance=project, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from organizations.models import Organization
 
 # Create your models here.
-class OrganizationApplication(models.Model):
+class Application(models.Model):
     user =  models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, default=None)
     message = models.TextField(blank=True, default="")

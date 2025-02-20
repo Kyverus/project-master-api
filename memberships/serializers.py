@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer
-from .models import OrganizationMembership
+from .models import Membership
 
-class OrganizationMembershipSerializer(ModelSerializer):
+class MembershipSerializer(ModelSerializer):
     class Meta:
-        model = OrganizationMembership
+        model = Membership
         fields = '__all__'
